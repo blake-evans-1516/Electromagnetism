@@ -1,0 +1,574 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24431,        564]
+NotebookOptionsPosition[     23243,        540]
+NotebookOutlinePosition[     23586,        555]
+CellTagsIndexPosition[     23543,        552]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+So, we can start here by writing out the given values of Resistance and \
+Capacitance which is (x10^3) and (x10^-6) for kilo and micro respectively. If \
+we multiply these together we can get the time constant which we will use in \
+out Charge and current expressions in place of RC. Then all we need to so is \
+write out the functions and plot them.\
+\>", "Text",
+ CellChangeTimes->{{3.8122891735009975`*^9, 
+  3.8122894331066985`*^9}},ExpressionUUID->"2dd2b4f4-5d50-43bc-b990-\
+399a0e325016"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Constants", " ", "for", " ", "Resistance"}], ",", " ", 
+    "Capacitance", ",", " ", 
+    RowBox[{"and", " ", "time"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"R", " ", "=", " ", 
+    RowBox[{"110", "*", 
+     RowBox[{"10", "^", "3"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"c", " ", "=", " ", 
+    RowBox[{"27", "*", 
+     RowBox[{"10", "^", 
+      RowBox[{"(", 
+       RowBox[{"-", "6"}], ")"}]}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"tcon", " ", "=", " ", 
+    RowBox[{"R", "*", "c"}]}], "\[IndentingNewLine]", 
+   RowBox[{"V0", " ", "=", " ", "120"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Equations", " ", "for", " ", "Charge", " ", "and", " ", "Current", " ", 
+     "from", " ", "part", " ", "a"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Charge", "[", "t_", "]"}], ":=", 
+    RowBox[{"V0", "*", "c", "*", 
+     RowBox[{"Exp", "[", 
+      RowBox[{
+       RowBox[{"-", "t"}], "/", "tcon"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Current", "[", "t_", "]"}], " ", ":=", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"V0", "/", "R"}], ")"}], "*", 
+     RowBox[{"Exp", "[", 
+      RowBox[{
+       RowBox[{"-", "t"}], "/", "tcon"}], "]"}]}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Plotting", "  ", "of", " ", "Charge", " ", "and", " ", "Current", " ", 
+     "for", " ", "part", " ", "a"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Charge", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", 
+       RowBox[{"5", "*", "tcon"}]}], "}"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time(s)\>\"", ",", "\"\<Charge(C)\>\""}], "}"}]}], ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", "\"\<Discharge of Capacitor vs Time\>\""}]}], 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Current", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", 
+       RowBox[{"5", "*", "tcon"}]}], "}"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time(s)\>\"", ",", "\"\<Current(C/s)\>\""}], "}"}]}], ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", 
+      "\"\<Current of Discharging of Capacitor vs Time\>\""}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Equations", " ", "for", " ", "Charge", " ", "and", " ", "Current", " ", 
+     "from", " ", "part", " ", "c"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Charge2", "[", "t_", "]"}], " ", ":=", 
+    RowBox[{"V0", "*", "c", "*", 
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       RowBox[{"Exp", "[", 
+        RowBox[{
+         RowBox[{"-", "t"}], "/", "tcon"}], "]"}]}], ")"}]}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Current2", "[", "t_", "]"}], " ", ":=", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"V0", "/", "R"}], ")"}], "*", 
+     RowBox[{"Exp", "[", 
+      RowBox[{
+       RowBox[{"-", "t"}], "/", "tcon"}], "]"}]}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Plotting", "  ", "of", " ", "Charge", " ", "and", " ", "Current", " ", 
+     "for", " ", "part", " ", "c"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Charge2", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", 
+       RowBox[{"5", "*", "tcon"}]}], "}"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time(s)\>\"", ",", "\"\<Charge(C)\>\""}], "}"}]}], ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", "\"\<Discharge of Capacitor vs Time\>\""}]}], 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Current2", "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", 
+       RowBox[{"5", "*", "tcon"}]}], "}"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time(s)\>\"", ",", "\"\<Current(C/s)\>\""}], "}"}]}], ",", 
+     RowBox[{
+     "PlotLabel", "\[Rule]", 
+      "\"\<Current of Discharging of Capacitor vs Time\>\""}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.812285925760256*^9, 3.81228616210854*^9}, {
+  3.812286221414624*^9, 3.8122864044123583`*^9}, {3.8122864600424147`*^9, 
+  3.812286565154187*^9}, {3.812287523414919*^9, 3.8122875631407995`*^9}, {
+  3.812287779253462*^9, 3.8122877973704596`*^9}, {3.8122878375842113`*^9, 
+  3.8122878519912844`*^9}, {3.8122879104979706`*^9, 3.8122879771463747`*^9}, {
+  3.812288008858288*^9, 3.8122880168403254`*^9}, {3.8122881513155303`*^9, 
+  3.8122881931099043`*^9}, {3.812288229924821*^9, 3.8122882572410088`*^9}, {
+  3.8122885917091155`*^9, 3.812288609967944*^9}, {3.8122887203845935`*^9, 
+  3.8122887900741405`*^9}, {3.812288933589575*^9, 3.8122891252420025`*^9}, {
+  3.812289440753542*^9, 
+  3.8122894716783323`*^9}},ExpressionUUID->"ac87b692-eb87-4dc0-8e00-\
+d006b3ca428d"],
+
+Cell[BoxData["110000"], "Output",
+ CellChangeTimes->{3.8122863450795536`*^9, 3.8122864052014446`*^9, 
+  3.8122864688096466`*^9, 3.812286575195183*^9, 3.8122881608924766`*^9, 
+  3.8122881965432434`*^9, 3.8122882581480474`*^9},
+ CellLabel->"Out[53]=",ExpressionUUID->"d9f6abab-11f2-463a-97b8-41e720bf276a"],
+
+Cell[BoxData[
+ FractionBox["27", "1000000"]], "Output",
+ CellChangeTimes->{3.8122863450795536`*^9, 3.8122864052014446`*^9, 
+  3.8122864688096466`*^9, 3.812286575195183*^9, 3.8122881608924766`*^9, 
+  3.8122881965432434`*^9, 3.8122882581520495`*^9},
+ CellLabel->"Out[54]=",ExpressionUUID->"b98b1561-40f0-4098-9a6f-ed1228ac32b8"],
+
+Cell[BoxData[
+ FractionBox["297", "100"]], "Output",
+ CellChangeTimes->{3.8122863450795536`*^9, 3.8122864052014446`*^9, 
+  3.8122864688096466`*^9, 3.812286575195183*^9, 3.8122881608924766`*^9, 
+  3.8122881965432434`*^9, 3.812288258155049*^9},
+ CellLabel->"Out[55]=",ExpressionUUID->"08e71c7d-aca2-4e09-a710-d238d8269029"],
+
+Cell[BoxData["120"], "Output",
+ CellChangeTimes->{3.8122863450795536`*^9, 3.8122864052014446`*^9, 
+  3.8122864688096466`*^9, 3.812286575195183*^9, 3.8122881608924766`*^9, 
+  3.8122881965432434`*^9, 3.812288258158057*^9},
+ CellLabel->"Out[56]=",ExpressionUUID->"8f0ded52-cc9c-406a-8a44-0d344d32bf40"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {}, 
+    TagBox[
+     {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+      1.], LineBox[CompressedData["
+1:eJwV0fk/1HkcwHGNsZgdVxqFNMYxOeaDMJqyvu83EYoiJNdOimLqMeVIulDq
+gWIlcjxqhRQZba5ErS7SJTZb+6iJLVePLqLWHFG77Q+vx/MPeHE27VgXS1NR
+UfH/3v/yG7dF5q0vosrEfYV3joqgR/hso2ptIuzoekgiM0Qwfb6jWVpzCCxv
+hA7KdokgZ5VDVHfNCQhsaE0RRIsg6PTbJb/XVIFwzkDsh6UiEHitXHilpgmc
+R3j9rNfxIClLLmipuQ2DyurXm73iYbTzR7/mmn5IqpUYlejEATv81GzuzhHg
+81rXDlXGQqaWztPmoQ+Q2abVxC3eDJfvFy9v0/sM5pwCWW9XNAi0fFpU5yuA
+7W1QnaQUQqj4zUR29yz0NVOTUkUkqMadvOA2roK6/ewDRDMc9vlX+kduU0Ve
+/Z6IqIRQuHnLor/kuhom/3CY+do9BNa47Hmv6amBwSmrh+iLgqBumddYaTkD
+9a1D6QkBgVAzNRPgP87EtDOeY8nb18L7C5mBArEOahWZnJvy9oO0VHdD02Fd
+DGjI3f+t0hdsT1sHA3cubrHvK61keIO1kbpPQow+hpj56tbf9IQ8oWn9krx5
+WPap2P5uvwewLKvCtfpYeHUZHB2cQKA3CffsnjFA/XehX71/o2D+jSPDs7gA
+K+xXsjQKXGEvt5J+MsMQObyIaP3HAvAMURRfqzPCb+s7AvrSXcCR3pb0ddwY
+1W6n7VR1dYasvc03HxmboM2mnKxrgY5AVld3N6xYhNkxl9qnyx1AduqrwaXD
+bGTklzw79JaAfvj99yYbTLE8/FW5m7EtuHF9phK+mCLjSir/XKQV5J9xD+or
+42BhR+8i9qQlFM1uGE+yM8Pk+Cpv9pj599/VvPN9Zlglzr4oHeVAipF2NXuL
+OQZrsmJW8E0h3ufT7iqlOaZLK3xDtpmAuJUx1VRmgfu3cPNe7jUCroZ7FcPe
+Etsd26Y7VRbAZJlE8fEPSwwUfPazK2KBWMc5a2EcF0+5nI2Lz9GHeY5LE9fN
+cnE5Qx79qU0PeorENINfF6Mocis7f0QHlr7ofGDqZIWGrXaFR0aZ0BLtL2h/
+aoXDHZzdu2SaEHYykBaxyxqHSEWn8UZ1aKpPonsybPBL/xPGyBI1MKE/kFyV
+2OBE9MDlVTqq4ArUsVQPW2zP6Unv9ZgDBxeTu/CXLTbT2i14Qf9Sz9cG1Bal
+8NCxYtClxWGWGosouOXAJBixVb/7QK6SsnKxf9ijTfDO4/S3Kw8qKZHuoydx
+egQXn2Eq56UoqY9dGm8qDAgyX478eUOopJQkQ1uPQ7A2yuunACclpaWyI2KK
+TzDqRK8i7IWC4lf7TTcKCaa0t4TR7BVUatq7b/6bCHbPrxuJsVBQVzdka7yL
+ISgpEBn0GCoo0OoyNhMRfJXOFtfSFZRviqvHiWSCNMaai6VSORXlY5OfmEPw
+7/KAcyFZcqrC7F6pdi7BkfUZ9+YckFPDs7FVdb8Q9NUhyU2JcmprY+Xl4UKC
+UqlGFOdnOZVgZDiwrpygkfkqNz5fTrX80zo2UUFQnTawXc1WTsl6gz8ePUtw
+tfMCltRUTu3LPE7rrCXo2Nh69zhTTl2PsmMKJQQ1m+x6E2lySkXQw5q5SPB5
+wn6vMIWM8pgrYpc0EJyZrLf1nJBRRz6oWzs1E3zE6E1zGpVR/wFM8xiy
+       "]]},
+     Annotation[#, "Charting`Private`Tag$7409#1"]& ]}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"Time(s)\"", TraditionalForm], 
+    FormBox["\"Charge(C)\"", TraditionalForm]},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox["\"Discharge of Capacitor vs Time\"", TraditionalForm],
+  PlotRange->NCache[{{0, 
+      Rational[297, 20]}, {0., 0.0032399996693877717`}}, {{0, 14.85}, {0., 
+     0.0032399996693877717`}}],
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.8122863450795536`*^9, 3.8122864052014446`*^9, 
+  3.8122864688096466`*^9, 3.812286575195183*^9, 3.8122881608924766`*^9, 
+  3.8122881965432434`*^9, 3.812288258207061*^9},
+ CellLabel->"Out[59]=",ExpressionUUID->"5dd2c0e3-40ba-41b6-8501-c6a3cc01d474"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {}, 
+    TagBox[
+     {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+      1.], LineBox[CompressedData["
+1:eJwB4QQe+yFib1JlAgAAAE0AAAACAAAANbFrXI1WlD7MA/qYmt9RP8xf2GAD
+qHI/1Jlnt5fYUT/1pr2z2qeCP6oQ6pWX0VE/iUowXcankj8MSd2On8NRP1Oc
+6TG8p6I/kyhiUtCnUT84RUYct6eyP4r5cDC0cFE/q5l0kbSnwj93s9vifQRR
+P+TDC0yzp9I/J6X8Sd8zUD8fWpv8jHDjP7Dv96VsIk0/gw0P1bPh7D+c2G3G
+EGFKP7XJljq4EfM/yMd8YlfuRz84DUi0Axf4P5YrLbUWiEU/V27o7ojG/D80
+Dgzrg4JDPwNolak97QBA7foRzFWIQT97TaFNXGsDQJ3QM2Klkj8/wMEk0pe+
+BUDx5/UJKKE8P042eesJRAhAoRq6fkW/OT+qOUXlmJ4KQGURvD6eUTc/p/H7
+UE3tDEDw5Ft7JCk1P+upg1E4bg9A32jSE2ILMz9+eEEZIOIQQLmoturZQjE/
+K5wpVD8mEkD8DLPUSAgvPykaB0hxZBNASdA0LR3zKz+NXyCsMY0UQPiJw9Hv
+WSk/FSWiWg3PFUAgXhXaM84mPwSyX3l3+xZA9vKNCBSpJD8Xv4Xi/EAYQPgm
+aLY1kCI/eiahBJWAGUA9FGtbKrYgP0RV+Ja7qhpA1QZQ01FNHj8yBLhz/e0b
+QLOxWS4aPxs/h3qzwM0bHUC33k9aI6wYPy1LpMawQx5A3Cbg7pViFj/2m/0W
+r4QfQMLHgLmSJBQ/E1rJ6x1YIED6mlut40ASPz0mSPFx+iBAKzd33MJnED+P
+n0FTz5khQDY4b9LMiw0/lPxY7XMuIkCZ9IF/bMsKP6uZpCymzyJAZg+jKIAZ
+CD92Gg6kH2YjQMizXrs71AU/aUjyd6L5I0DFN1rVms8DP262CvGymSRAAKnc
+1uXUAT8mCEGiCi8lQOW/4aLjKQA/8Jmr+O/QJUCtRsZm+Q/9Pm4PNIccaCZA
+cjc9eOhP+j4UMjdyUvwmQLpry7Zd3vc+zJRuAhadJ0DjTA+fWHn1Pjfbw8og
+MyhAmxBzn9J08z60YU04udUoQBx4adi6e/E+WZVRAlt1KUAM61/DZ3vvPrKs
+cwRECipAGJPHfZeL7D4dBMqruqsqQBt2UNNvq+k+Oz8+i3hCK0BDRAg2QT/n
+PoEnLcc/1itA4w3quR0Y5T7ZT1ColHYsQJCAELq7++I+5VuRwTAMLUCLByAK
+XzThPig2L8vMDi1AlF+lzNEs4T5qEM3UaBEtQMqlvN9HJeE+78QI6KAWLUBw
+wM/xPRbhPvktgA4RIS1AfDzznFH44D4NAG9b8TUtQDhYnMwVveA+NaRM9bFf
+LUCHCM+dB0ngPnh+6v5NYi1ACWEireFB4D66WIgI6mQtQFkPsN++OuA+Pw3E
+GyJqLUBxxPiogizgPkl2O0KSdC1AnbzVpS8Q4D5dSCqPcoktQLDXzi48sN8+
+oCLImA6MLUBUq9lsU6LfPuL8ZaKqji1A3vnWxXCU3z5nsaG14pMtQDQR8r29
+eN8+cRoZ3FKeLUCxLOt7oEHfPrT0tuXuoC1At5jCRugz3z72zlTviqMtQPQK
+PRc2Jt8+e4OQAsOoLUCrcYm+4wrfPr5dLgxfqy1ACYQVkEP93j4AOMwV+60t
+QGXXuFyp794+QhJqH5ewLUBqXtMhFeLePoXsBykzsy1AwTLG3IbU3j4Xiy6Y
+
+       "]]},
+     Annotation[#, "Charting`Private`Tag$7459#1"]& ]}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"Time(s)\"", TraditionalForm], 
+    FormBox["\"Current(C/s)\"", TraditionalForm]},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox[
+   "\"Current of Discharging of Capacitor vs Time\"", TraditionalForm],
+  PlotRange->NCache[{{0, 
+      Rational[297, 20]}, {0., 0.0010909089795918423`}}, {{0, 14.85}, {0., 
+     0.0010909089795918423`}}],
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.8122863450795536`*^9, 3.8122864052014446`*^9, 
+  3.8122864688096466`*^9, 3.812286575195183*^9, 3.8122881608924766`*^9, 
+  3.8122881965432434`*^9, 3.8122882582620735`*^9},
+ CellLabel->"Out[60]=",ExpressionUUID->"44ea44f1-7b04-4c0b-bc6a-22174106fb4c"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {}, 
+    TagBox[
+     {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+      1.], LineBox[CompressedData["
+1:eJwV0Xs01HkYBnCHaUOGaMbd0sTk0pc0xKa8L+GwIVRoxjTJZWZ+iiTSZdsu
+OnSRSyRdXaYGo00Ia3VVSpRSia3T7opSolWRmuHsb/94z3M+5zx/POe8czck
+hcWpq6mpBdH3f7peTojKDi/w3NaTaObcNLGsU9S7XqNiC8y8ZTzEffLUc/zC
+1bo/5fuAodAfev1wwPPgzwuFbfJ8aIJcn/NtXzxXnX7n3CIvg4CXn3vDGxjg
+7utn3iivhYw6Yf9UIQsUxVvz6uW3wC3pYqVFuDUMtM4KrJN3wxvvUpfUPh5Y
+8k+pjmx+DZvyuW155cthP1PvWd0/H8Al+t7SXd0r4Er78SVN+p+BLxIWjhwO
+BXemf72G0STs5UtfGZmvgYjEodGsNhU8HsH8GvNI0JAUVi4bUcPcLtGMdToC
+2BlUGhSVoIFbx2fMd5QJ4cZN6+6iazNwwSll6vknIghevH1Yy0cTL7BPhrQq
+10PVT76DJ85qo99SFmT3R4N8TBkSNKKDYxWjmRWXNsBw5f5Q90Q9fJAwGdGe
+HgO7071MrPpnY4vMnOPHiQWH03argWuAXxk6Aot7sWBnOtM/OXYOemSRqyf5
+cZAtsqp2zmahPYs/PqcnDtg2ZXxmFxuj1WvW6a6MB0ataPs2pSEefVJwU1Uf
+D0bXD/Sr0BhfahddkxmLYQe3lFG4xwQDE1hryjeLwWfN5PE/qkxxzMb2eUez
+GBYxmlKmRswwZ9JpVZyGBDJ31N14YGaBh2XBIUdRAmSFrK1m+Y8IA1rab9Mk
+MHFqyvBShiX+FdFwjFRLYA6/fdgi0gq5HaFv9fsksIzrP5b83QpFvkOblAwp
+5JzzWtVVPBe/DoR1tTpIoUAVOZLiyEH3qjudKYFS+t+yBRe6OPgmQGyYvlEK
+aaa6Msv4eeixZ/pQcqYUpP6ftpV9m4eq9k+GCeekkNigPVZbbI2nz/TcHm2Q
+AlfTq0zbyQaX6OWXXr8vhX+LFZMfH9kg06032PoV3ddzyTSXcNGs8XvqjlEp
+sBa5bQlTcfFX44WO0yopdBYkqhuemY8i3q0Mt1kUuL1ovW/Fs8VJ9ucqnhEF
+9dFB7r8/s8XegJjhYQ4FawtD1QWpdmgS4hzmSyiorU5h+GjbY8YvLNdpVwos
+GPcVzQp79BdJjmd5UuABnofTvR2w8ixmNvtSsHc+uQs9DtixbkJiGUhB38qQ
+ioK0BZjL7o6MDaNgUJB3c6EOQfWqujvVERTYLnbq6NQlSB5v5LXSpmY/eCrR
+J5jfGFTUR/vjbc2hEkOCBlonvH6IpOAb2aOrP5cgy++ulYg2Uy1JMOZKUMEL
+ZuqtpcBVFjh+WURQKD7SIuZTkL77/XTQBoKlu9K/7qLdHJml+T6W4EWlgV0+
+bWDeNuNQBB/nxWxuoR2Q5uGdv5Vgi8tgzmwBBUJ/+5wtB+k9TuPsRtolnHsn
+dI8Q5Dz67WoH7X5VXFnVUYK1aRFRf9MWXy690n+MoOn1A7u1oihINjV5GXaW
+4KGld8IFtOu/NAyOlhDsNI5vSKI98XD1x0PlBMUlbGYG7Z37c9VbKwhuiqk5
+V037mtBRR6QguDGl/MUN2mrunWzlRYIfntfrPqPtbUBZFtUQHE0bcn9H+8CH
+mXa8OoLNLt78Kdr/AfuaGc4=
+       "]]},
+     Annotation[#, "Charting`Private`Tag$7509#1"]& ]}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"Time(s)\"", TraditionalForm], 
+    FormBox["\"Charge(C)\"", TraditionalForm]},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox["\"Discharge of Capacitor vs Time\"", TraditionalForm],
+  PlotRange->NCache[{{0, 
+      Rational[297, 20]}, {0., 0.003218169049495315}}, {{0, 14.85}, {0., 
+     0.003218169049495315}}],
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.8122863450795536`*^9, 3.8122864052014446`*^9, 
+  3.8122864688096466`*^9, 3.812286575195183*^9, 3.8122881608924766`*^9, 
+  3.8122881965432434`*^9, 3.8122882583170853`*^9},
+ CellLabel->"Out[63]=",ExpressionUUID->"c03d535f-4998-4ae8-b70a-0ad62547c615"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {}, 
+    TagBox[
+     {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+      1.], LineBox[CompressedData["
+1:eJwB4QQe+yFib1JlAgAAAE0AAAACAAAANbFrXI1WlD7MA/qYmt9RP8xf2GAD
+qHI/1Jlnt5fYUT/1pr2z2qeCP6oQ6pWX0VE/iUowXcankj8MSd2On8NRP1Oc
+6TG8p6I/kyhiUtCnUT84RUYct6eyP4r5cDC0cFE/q5l0kbSnwj93s9vifQRR
+P+TDC0yzp9I/J6X8Sd8zUD8fWpv8jHDjP7Dv96VsIk0/gw0P1bPh7D+c2G3G
+EGFKP7XJljq4EfM/yMd8YlfuRz84DUi0Axf4P5YrLbUWiEU/V27o7ojG/D80
+Dgzrg4JDPwNolak97QBA7foRzFWIQT97TaFNXGsDQJ3QM2Klkj8/wMEk0pe+
+BUDx5/UJKKE8P042eesJRAhAoRq6fkW/OT+qOUXlmJ4KQGURvD6eUTc/p/H7
+UE3tDEDw5Ft7JCk1P+upg1E4bg9A32jSE2ILMz9+eEEZIOIQQLmoturZQjE/
+K5wpVD8mEkD8DLPUSAgvPykaB0hxZBNASdA0LR3zKz+NXyCsMY0UQPiJw9Hv
+WSk/FSWiWg3PFUAgXhXaM84mPwSyX3l3+xZA9vKNCBSpJD8Xv4Xi/EAYQPgm
+aLY1kCI/eiahBJWAGUA9FGtbKrYgP0RV+Ja7qhpA1QZQ01FNHj8yBLhz/e0b
+QLOxWS4aPxs/h3qzwM0bHUC33k9aI6wYPy1LpMawQx5A3Cbg7pViFj/2m/0W
+r4QfQMLHgLmSJBQ/E1rJ6x1YIED6mlut40ASPz0mSPFx+iBAKzd33MJnED+P
+n0FTz5khQDY4b9LMiw0/lPxY7XMuIkCZ9IF/bMsKP6uZpCymzyJAZg+jKIAZ
+CD92Gg6kH2YjQMizXrs71AU/aUjyd6L5I0DFN1rVms8DP262CvGymSRAAKnc
+1uXUAT8mCEGiCi8lQOW/4aLjKQA/8Jmr+O/QJUCtRsZm+Q/9Pm4PNIccaCZA
+cjc9eOhP+j4UMjdyUvwmQLpry7Zd3vc+zJRuAhadJ0DjTA+fWHn1Pjfbw8og
+MyhAmxBzn9J08z60YU04udUoQBx4adi6e/E+WZVRAlt1KUAM61/DZ3vvPrKs
+cwRECipAGJPHfZeL7D4dBMqruqsqQBt2UNNvq+k+Oz8+i3hCK0BDRAg2QT/n
+PoEnLcc/1itA4w3quR0Y5T7ZT1ColHYsQJCAELq7++I+5VuRwTAMLUCLByAK
+XzThPig2L8vMDi1AlF+lzNEs4T5qEM3UaBEtQMqlvN9HJeE+78QI6KAWLUBw
+wM/xPRbhPvktgA4RIS1AfDzznFH44D4NAG9b8TUtQDhYnMwVveA+NaRM9bFf
+LUCHCM+dB0ngPnh+6v5NYi1ACWEireFB4D66WIgI6mQtQFkPsN++OuA+Pw3E
+GyJqLUBxxPiogizgPkl2O0KSdC1AnbzVpS8Q4D5dSCqPcoktQLDXzi48sN8+
+oCLImA6MLUBUq9lsU6LfPuL8ZaKqji1A3vnWxXCU3z5nsaG14pMtQDQR8r29
+eN8+cRoZ3FKeLUCxLOt7oEHfPrT0tuXuoC1At5jCRugz3z72zlTviqMtQPQK
+PRc2Jt8+e4OQAsOoLUCrcYm+4wrfPr5dLgxfqy1ACYQVkEP93j4AOMwV+60t
+QGXXuFyp794+QhJqH5ewLUBqXtMhFeLePoXsBykzsy1AwTLG3IbU3j4Xiy6Y
+
+       "]]},
+     Annotation[#, "Charting`Private`Tag$7559#1"]& ]}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"Time(s)\"", TraditionalForm], 
+    FormBox["\"Current(C/s)\"", TraditionalForm]},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox[
+   "\"Current of Discharging of Capacitor vs Time\"", TraditionalForm],
+  PlotRange->NCache[{{0, 
+      Rational[297, 20]}, {0., 0.0010909089795918423`}}, {{0, 14.85}, {0., 
+     0.0010909089795918423`}}],
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.8122863450795536`*^9, 3.8122864052014446`*^9, 
+  3.8122864688096466`*^9, 3.812286575195183*^9, 3.8122881608924766`*^9, 
+  3.8122881965432434`*^9, 3.8122882583500924`*^9},
+ CellLabel->"Out[64]=",ExpressionUUID->"b4075c29-ffa7-4974-a450-cf13cf216a96"]
+}, Open  ]]
+},
+WindowSize->{860, 912},
+WindowMargins->{{Automatic, 64}, {198, Automatic}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 504, 9, 78, "Text",ExpressionUUID->"2dd2b4f4-5d50-43bc-b990-399a0e325016"],
+Cell[CellGroupData[{
+Cell[1087, 33, 5154, 130, 523, "Input",ExpressionUUID->"ac87b692-eb87-4dc0-8e00-d006b3ca428d"],
+Cell[6244, 165, 304, 4, 32, "Output",ExpressionUUID->"d9f6abab-11f2-463a-97b8-41e720bf276a"],
+Cell[6551, 171, 326, 5, 49, "Output",ExpressionUUID->"b98b1561-40f0-4098-9a6f-ed1228ac32b8"],
+Cell[6880, 178, 321, 5, 49, "Output",ExpressionUUID->"08e71c7d-aca2-4e09-a710-d238d8269029"],
+Cell[7204, 185, 299, 4, 32, "Output",ExpressionUUID->"8f0ded52-cc9c-406a-8a44-0d344d32bf40"],
+Cell[7506, 191, 3923, 84, 236, "Output",ExpressionUUID->"5dd2c0e3-40ba-41b6-8501-c6a3cc01d474"],
+Cell[11432, 277, 3950, 86, 236, "Output",ExpressionUUID->"44ea44f1-7b04-4c0b-bc6a-22174106fb4c"],
+Cell[15385, 365, 3889, 84, 236, "Output",ExpressionUUID->"c03d535f-4998-4ae8-b70a-0ad62547c615"],
+Cell[19277, 451, 3950, 86, 236, "Output",ExpressionUUID->"b4075c29-ffa7-4974-a450-cf13cf216a96"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
